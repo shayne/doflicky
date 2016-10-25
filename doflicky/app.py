@@ -13,7 +13,7 @@
 
 import sys
 from gi.repository import GLib, Gtk, Gdk, Gio
-from .window import DoFlickyWindow
+from .window3 import DoFlickyAppController
 
 
 class DoFlicky(Gtk.Application):
@@ -32,11 +32,12 @@ class DoFlicky(Gtk.Application):
         if self.app_win is not None:
             self.app_win.present()
             return
-        self.app_win = DoFlickyWindow()
+        self.app_controller = DoFlickyAppController()
+        self.app_win = self.app_controller.window
         app.add_window(self.app_win)
         self.app_win.present()
         self.app_win.show_all()
-        self.app_win.refresh()
+        self.app_controller.refresh()
 
 
 def doflicky_main():
